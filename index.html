@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Handling Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+    .button-container {
+      position: relative;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      outline: none;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .tooltip {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: black;
+      color: white;
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="button-container">
+    <div class="tooltip">Click me!</div>
+    <button id="colorButton">Change Color</button>
+  </div>
+
+  <script>
+    // Select DOM elements
+    const button = document.getElementById('colorButton');
+    const tooltip = document.querySelector('.tooltip');
+    const originalColor = '#007BFF';
+
+    // Function to generate random color
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    // Event: Change button background color on click
+    button.addEventListener('click', () => {
+      button.style.backgroundColor = getRandomColor();
+    });
+
+    // Event: Show tooltip on mouseover
+    button.addEventListener('mouseover', () => {
+      tooltip.style.display = 'block';
+    });
+
+    // Event: Hide tooltip on mouseout
+    button.addEventListener('mouseout', () => {
+      tooltip.style.display = 'none';
+    });
+
+    // Event: Reset background color on double click
+    button.addEventListener('dblclick', () => {
+      button.style.backgroundColor = originalColor;
+    });
+  </script>
+</body>
+</html>
